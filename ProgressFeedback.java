@@ -24,7 +24,7 @@ public class ProgressFeedback extends Application {
                 //  updateProgress(i + 1, 100);
                 // sleep is used to simulate doing some work which takes some time....
                 // Thread.sleep(100);
-                int abc = 100;
+                int abc = 1000;
                 int a = 100;
                 int b = 200;
                 int c = 26;
