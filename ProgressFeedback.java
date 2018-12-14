@@ -15,34 +15,24 @@ public class ProgressFeedback extends Application {
    //private static final double EPSILON = 0.0000005;
     @Override
     public void start(Stage stage) throws Exception {
-        final Task<Void> task = new Task<Void>() {
-           // final int N_ITERATIONS = 100;
-
-            @Override
-            protected Void call() throws Exception {
-                // for (int i = 0; i < 100; i++) {
-                //  updateProgress(i + 1, 100);
-                // sleep is used to simulate doing some work which takes some time....
-                // Thread.sleep(100);
-                int abc = 1000;
-                int a = 100;
-                int b = 200;
-                int c = 26;
-                int i = 0;
-                for (int z = a; z <= b; z += c) {
-                    updateProgress(z + c, b);
-                    Thread.sleep(1000);
-
-                    System.out.println(z);
-
-
+        Task<Integer> task = new Task<Integer>() {
+            @Override protected Integer call() throws Exception {
+                int iterations;
+                for (iterations = 0; iterations < 10000000; iterations++) {
+                    if (isCancelled()) {
+                        updateMessage("Cancelled");
+                        break;
+                    }
+                    updateMessage("Iteration " + iterations);
+                    updateProgress(iterations, 10000000);
                 }
-
-
-
-                return null;
+                return iterations;
             }
         };
+
+
+
+
 
         final ProgressBar progress = new ProgressBar();
         progress.progressProperty().bind(
